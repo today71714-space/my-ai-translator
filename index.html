@@ -105,7 +105,14 @@
 
     <script>
         // --- Configuration ---
-        const apiKey = "AIzaSyAOhVxca_AFkrDCYsjkCBcJ0NdE_eTprAA"; 
+        // 從瀏覽器的快取中讀取 Key，如果沒有就跳出視窗詢問
+        let apiKey = localStorage.getItem('gemini_api_key');
+        if (!apiKey) {
+            apiKey = prompt("請輸入您的 Gemini API Key (此 Key 將儲存在您的瀏覽器中，不會上傳至伺服器):");
+            if (apiKey) {
+                localStorage.setItem('gemini_api_key', apiKey);
+            }
+        }
         let isRecording = false;
         let recognition = null;
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'voice-translator';
