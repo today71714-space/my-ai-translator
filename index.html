@@ -115,7 +115,7 @@
             recognition = new SpeechRecognition();
             recognition.continuous = true; // 持續錄音
             recognition.interimResults = true;
-            recognition.lang = 'en-US'; // 雖然設為英文，但目前 Chrome 會自動嘗試偵測混合語言
+            recognition.lang = 'zh-TW'; // 雖然設為英文，但目前 Chrome 會自動嘗試偵測混合語言
 
             recognition.onstart = () => {
                 isRecording = true;
@@ -185,7 +185,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: `你是一個即時翻譯助手。請判斷以下輸入的語言（英、日、中），並將其翻譯成流暢的「繁體中文」。如果是中文，請優化語氣。輸入內容："${text}"。請只輸出翻譯結果。` }] }]
+                        contents: [{ parts: [{ text: `你是一個專業翻譯與紀錄助手。1. 如果輸入是英文或日文，請翻譯成流暢的「繁體中文」。2. 如果輸入已經是中文，請維持中文並優化語氣，去除口語贅字，使紀錄更專業通順。輸入內容為："${text}"。請直接輸出處理後的結果，不要有任何多餘的解釋。` }] }]
                     })
                 });
 
